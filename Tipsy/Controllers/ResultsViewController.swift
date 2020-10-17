@@ -2,8 +2,8 @@
 //  ResultsViewController.swift
 //  Tipsy
 //
-//  Created by Angela Yu on 09/09/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
+//  Created by Rob Ranf on 10/17/2020.
+//  Copyright © 2020 Emiya Consulting. All rights reserved.
 //
 
 import UIKit
