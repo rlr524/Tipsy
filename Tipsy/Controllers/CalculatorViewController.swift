@@ -18,6 +18,9 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var stepperButton: UIStepper!
     
     var tip: Double = 0.10
+    var bill: Double = 0.0
+    var perPerson: Double = 0.0
+    var split: String = "0"
     
     @IBAction func tipChanged(_ sender: UIButton) {
         // Deselect all the tip buttons
@@ -39,6 +42,12 @@ class CalculatorViewController: UIViewController {
         
         // Turn the double into a decimal percent
         tip = buttonTitleToDouble / 100
+        
+        // Turn the bill entry into a double and make the numeric
+        // keypad disappear after clicking elsewhere in the app
+        let billTextDouble = Double(billTextField.text ?? "0.0")
+        bill = billTextDouble ?? 0.0
+        billTextField.endEditing(true)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -46,7 +55,16 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
+        split = splitNumberLabel.text ?? "2"
+        let tipAmount = bill * tip
+        let totalAmount = tipAmount + bill
+        let splitAmountPre = totalAmount / Double(split)!
+        let splitAmountFinal = String(format: "%.2f", splitAmountPre)
         print(tip)
-        print(splitNumberLabel.text ?? 2)
+        print(bill)
+        print(split)
+        print("Tip amount: \(tipAmount)")
+        print("Total amount: \(totalAmount)")
+        print("Split amount: \(splitAmountFinal)")
     }
 }
