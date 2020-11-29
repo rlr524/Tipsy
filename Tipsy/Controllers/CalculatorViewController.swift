@@ -19,8 +19,8 @@ class CalculatorViewController: UIViewController {
     
     var tip: Double = 0.10
     var bill: Double = 0.0
-    var perPerson: Double = 0.0
     var split: String = "0"
+    var splitAmount: String = "0"
     
     @IBAction func tipChanged(_ sender: UIButton) {
         // Deselect all the tip buttons
@@ -60,11 +60,24 @@ class CalculatorViewController: UIViewController {
         let totalAmount = tipAmount + bill
         let splitAmountPre = totalAmount / Double(split)!
         let splitAmountFinal = String(format: "%.2f", splitAmountPre)
+        splitAmount = splitAmountFinal
         print(tip)
         print(bill)
         print(split)
         print("Tip amount: \(tipAmount)")
         print("Total amount: \(totalAmount)")
         print("Split amount: \(splitAmountFinal)")
+        self.performSegue(withIdentifier: "calculateTotal", sender: self)
+    }
+    
+    // TODO: On the results screen we still need to carry out
+    // the tip to two decimal places and carry out the bill
+    // amount to two decimal places
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "calculateTotal" {
+            let destinationVC = segue.destination as! ResultsViewController
+            destinationVC.splitValue = splitAmount
+            destinationVC.detailString = "$\(bill) split between \(split), with \(tip)% tip."
+        }
     }
 }
