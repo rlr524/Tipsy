@@ -73,6 +73,8 @@ class CalculatorViewController: UIViewController {
     // TODO: On the results screen we still need to carry out
     // the tip to two decimal places and carry out the bill
     // amount to two decimal places
+    // TODO: Return to this screen when recalculate is pressed on
+    // the results view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "calculateTotal" {
             let destinationVC = segue.destination as! ResultsViewController
