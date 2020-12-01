@@ -18,11 +18,12 @@ class ResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalLabel.text = splitValue
+        totalLabel.text = "$\(splitValue ?? "0.00")"
         settingsLabel.text = detailString
     }
     
     @IBAction func recalculatePressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
